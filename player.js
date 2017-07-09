@@ -1,10 +1,12 @@
 //player.js
 class Player{
     constructor(tetris){
+        this.DROP_SLOW = 1000;
+        this.DROP_FAST = 50;
         this.tetris = tetris;
         this.arena = tetris.arena;
         this.dropCounter = 0;
-        this.dropInterval = 1000;
+        this.dropInterval = this.DROP_SLOW;
         this.pos = {x: 0, y: 0};
         this.matrix = null;
         this.score = 0;
@@ -17,8 +19,8 @@ class Player{
             this.pos.y--;
             this.arena.merge(this);
             this.reset();
-            this.arena.sweep();
-            updateScore();
+            this.score += this.arena.sweep();
+            this.tetris.updateScore(this.score);
         }
         this.dropCounter = 0;
     }
@@ -38,7 +40,7 @@ class Player{
         if(this.arena.collide(this)){
             this.arena.clear();
             this.score = 0;
-            updateScore();
+            this.tetris.updateScore(this.score);
         }
     }
 

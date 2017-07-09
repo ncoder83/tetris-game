@@ -1,19 +1,22 @@
 class Tetris{
-    constructor(canvas){
-        this.canvas = canvas;
-        this.context = canvas.getContext('2d');
+    constructor(element){
+
+        this.element = element
+        this.canvas = element.querySelector('canvas');
+        this.context = this.canvas.getContext('2d');
         this.context.scale(20,20);//
+
         this.arena = new Arena(12,20);
         this.player = new Player(this);
         this.colors = [null, '#FF0D72','#0DC2FF','#0DFF72','#F538FF','#FF8E0D','#FFE138','#3877FF'];
         let lastTime  = 0;
-        const update = (time = 0) =>{
+        const update = (time = 0) => {
             const deltaTime = time - lastTime;
             lastTime = time;
             this.player.update(deltaTime);
             this.draw();
             requestAnimationFrame(update);
-        }
+        };
         update();
     }
 
@@ -38,4 +41,9 @@ class Tetris{
             });
         });
     }   
+
+    updateScore(score){
+        this.element.querySelector('.score').innerText = score;
+    }
+
 }

@@ -57,23 +57,53 @@ function update(time = 0){
     requestAnimationFrame(update);
 }
 
-function updateScore(){
-    document.getElementById('score').innerText = player.score;
-}
+const tetri = [];
+const playerElements = document.querySelectorAll('.player');
 
-const tetris = new Tetris(document.getElementById('gamearea'));
-const player = tetris.player;
-document.addEventListener('keydown', event => {
-    if(event.keyCode === 37)//left
-        player.move(-1);
-    else if(event.keyCode === 39)//right
-        player.move(1);
-    else if(event.keyCode === 40)//down
-        player.drop();
-    else if(event.keyCode === 81)//Q
-        player.rotate(-1);
-    else if(event.keyCode === 87)//W
-        player.rotate(1);
 
+[...playerElements].forEach(el => {
+    // const canvas = el.querySelector('canvas');
+    const tetris = new Tetris(el);
+    tetri.push(tetris);
 });
-updateScore();
+
+
+//const player = tetris.player;
+const keyListener = (event) => {
+
+    [
+        [65,68,81,69,83],//p1 
+        [72,75,89,73,74],//p2
+    ].forEach((key, index) => { 
+        const player = tetri[index].player;
+        if(event.type === 'keydown'){
+        if(event.keyCode === key[0])// 37)//left
+            player.move(-1);
+        else if(event.keyCode === key[1])//right
+            player.move(1);
+        else if(event.keyCode === key[2])//Q
+            player.rotate(-1);
+        else if(event.keyCode === key[3])//W
+            player.rotate(1);
+        }
+
+        if(event.keyCode === key[4]){//down
+            if(event.type === 'keydown'){
+                if(player.dropInterval !== player.DROP_FAST){
+                    player.drop();
+                    player.dropInterval = player.DROP_FAST;
+                }
+            }
+            else{
+                player.dropInterval = player.DROP_SLOW;
+            }
+
+        }
+    });
+
+    
+};
+
+document.addEventListener('keydown', keyListener);
+document.addEventListener('keyup', keyListener)
+// updateScore();
