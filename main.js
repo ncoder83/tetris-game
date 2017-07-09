@@ -46,17 +46,6 @@ function createPiece(type){
     }
 }
 
-let lastTime  = 0;
-function update(time = 0){
-    const deltaTime = time - lastTime;
-    lastTime = time;
-
-    player.update(deltaTime);
-
-    tetris.draw();
-    requestAnimationFrame(update);
-}
-
 const tetri = [];
 const playerElements = document.querySelectorAll('.player');
 
@@ -106,4 +95,3 @@ const keyListener = (event) => {
 
 document.addEventListener('keydown', keyListener);
 document.addEventListener('keyup', keyListener)
-// updateScore();
