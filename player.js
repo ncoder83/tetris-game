@@ -17,47 +17,19 @@ class Player{
     
         switch(type){
             case 'T':
-                return [
-                    [0, 0, 0],
-                    [1, 1, 1],
-                    [0, 1, 0]
-                ];
+                return [[0, 0, 0],[1, 1, 1],[0, 1, 0]];
             case 'O':
-                return [
-                    [2, 2],
-                    [2, 2]
-                ];
+                return [[2, 2],[2, 2]];
             case 'L':
-                return [
-                    [0, 3, 0],
-                    [0, 3, 0],
-                    [0, 3, 3]
-                ];
+                return [[0, 3, 0],[0, 3, 0],[0, 3, 3]];
             case 'J':
-                return [
-                    [0, 4, 0],
-                    [0, 4, 0],
-                    [4, 4, 0]
-                ];
+                return [[0, 4, 0],[0, 4, 0],[4, 4, 0]];
             case 'I':
-                return [
-                    [0, 5, 0, 0],
-                    [0, 5, 0, 0],
-                    [0, 5, 0, 0],
-                    [0, 5, 0, 0]
-                ];
+                return [[0, 5, 0, 0],[0, 5, 0, 0],[0, 5, 0, 0],[0, 5, 0, 0]];
             case 'S':
-                return [
-                    [0, 6, 6],
-                    [6, 6, 0],
-                    [0, 0, 0]
-                ];
+                return [[0, 6, 6],[6, 6, 0],[0, 0, 0]];
             case 'Z':
-            return [
-                    [7, 7, 0],
-                    [0, 7, 7],
-                    [0, 0, 0]
-                ]; 
+            return [[7, 7, 0],[0, 7, 7],[0, 0, 0]]; 
         }
     }
 
@@ -82,7 +54,7 @@ class Player{
 
     reset(){
         const pieces = 'ILJOTSZ';
-        this.matrix = this.createPiece(pieces[pieces.length * Math.random() | 0]); //Math.random() | 0 <- floors the number
+        this.matrix = this.createPiece(pieces[pieces.length * Math.random() | 0]);
         this.pos.y = 0;
         this.pos.x = (this.arena.matrix[0].length/2 | 0)  - (this.matrix[0].length/2 | 0);
         if(this.arena.collide(this)){
@@ -120,7 +92,7 @@ class Player{
                 ]
             }
         }
-        if(dir>0){
+        if(dir > 0){
             matrix.forEach(row => row.reverse());
         }
         else{

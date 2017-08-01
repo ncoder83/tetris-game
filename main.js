@@ -1,78 +1,22 @@
-function createPiece(type){
-    
-    switch(type){
-        case 'T':
-            return [
-                [0, 0, 0],
-                [1, 1, 1],
-                [0, 1, 0]
-            ];
-        case 'O':
-            return [
-                [2, 2],
-                [2, 2]
-            ];
-        case 'L':
-            return [
-                [0, 3, 0],
-                [0, 3, 0],
-                [0, 3, 3]
-            ];
-        case 'J':
-            return [
-                [0, 4, 0],
-                [0, 4, 0],
-                [4, 4, 0]
-            ];
-        case 'I':
-            return [
-                [0, 5, 0, 0],
-                [0, 5, 0, 0],
-                [0, 5, 0, 0],
-                [0, 5, 0, 0]
-            ];
-        case 'S':
-            return [
-                [0, 6, 6],
-                [6, 6, 0],
-                [0, 0, 0]
-            ];
-        case 'Z':
-        return [
-                [7, 7, 0],
-                [0, 7, 7],
-                [0, 0, 0]
-            ]; 
-    }
-}
 
-const tetri = [];
-const playerElements = document.querySelectorAll('.player');
+const tetrisManager = new TetrisManager(document);
+tetrisManager.createPlayer();
 
-
-[...playerElements].forEach(el => {
-    // const canvas = el.querySelector('canvas');
-    const tetris = new Tetris(el);
-    tetri.push(tetris);
-});
-
-
-//const player = tetris.player;
 const keyListener = (event) => {
 
     [
         [65,68,81,69,83],//p1 
         [72,75,89,73,74],//p2
     ].forEach((key, index) => { 
-        const player = tetri[index].player;
+        const player = tetrisManager.instances[index].player;
         if(event.type === 'keydown'){
-        if(event.keyCode === key[0])// 37)//left
+        if(event.keyCode === key[0])
             player.move(-1);
-        else if(event.keyCode === key[1])//right
+        else if(event.keyCode === key[1])
             player.move(1);
-        else if(event.keyCode === key[2])//Q
+        else if(event.keyCode === key[2])
             player.rotate(-1);
-        else if(event.keyCode === key[3])//W
+        else if(event.keyCode === key[3])
             player.rotate(1);
         }
 
@@ -86,11 +30,8 @@ const keyListener = (event) => {
             else{
                 player.dropInterval = player.DROP_SLOW;
             }
-
         }
     });
-
-    
 };
 
 document.addEventListener('keydown', keyListener);

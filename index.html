@@ -1,7 +1,7 @@
 <html>
-    <head><title>Tetris</title></head>
-    <body>
-        <style>
+    <head>
+        <title>Tetris</title>
+         <style>
 
             canvas{
                 border: .2em solid #FFF;
@@ -19,14 +19,17 @@
                 text-align: center;
             }
         </style>
-        <div class='player'>
-            <div class="score"></div>
-            <canvas id="gamearea" width="240" height="400"></canvas>
-        </div>
-        <div class='player'>
-            <div class="score"></div>
-            <canvas id="gamearea" width="240" height="400"></canvas>
-        </div>
+    </head>
+    <body>
+       <template id="player-template">
+            <div class='player'>
+                <div class="score"></div>
+                <canvas id="gamearea" width="240" height="400"></canvas>
+            </div>
+       </template>
+        
+        <script src="connectionmanager.js" type="text/javascript"></script>
+        <script src="tetrismanager.js" type="text/javascript"></script>
         <script src="arena.js" type="text/javascript"></script>
         <script src="player.js" type="text/javascript"></script>
         <script src="tetris.js" type="text/javascript"></script>
