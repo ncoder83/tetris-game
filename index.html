@@ -4,11 +4,15 @@
          <style>
 
             canvas{
-                border: .2em solid #FFF;
+                border: .2em solid #707070;
                 height: 90vh;
             }
             .player{
                 flex:1 1 auto;
+                border-color: #777;
+            }
+            .player.local canvas{
+                border-color: #FFF;
             }
             body{
                 display: flex;
@@ -28,11 +32,11 @@
             </div>
        </template>
         
-        <script src="connectionmanager.js" type="text/javascript"></script>
-        <script src="tetrismanager.js" type="text/javascript"></script>
-        <script src="arena.js" type="text/javascript"></script>
-        <script src="player.js" type="text/javascript"></script>
-        <script src="tetris.js" type="text/javascript"></script>
-        <script src="main.js" type="text/javascript"></script>
+        <script src="client/tetrismanager.js" type="text/javascript"></script>
+        <script src="client/connectionmanager.js" type="text/javascript"></script>
+        <script src="client/arena.js" type="text/javascript"></script>
+        <script src="client/player.js" type="text/javascript"></script>
+        <script src="client/tetris.js" type="text/javascript"></script>
+        <script src="client/main.js" type="text/javascript"></script>
     </body>
 </html>
